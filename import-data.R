@@ -2,7 +2,6 @@ library(lubridate)
 library(tidyverse)
 library(clockify)
 library(gt)
-library(gtExtras)
 
 
 
