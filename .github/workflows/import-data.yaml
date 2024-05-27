@@ -1,7 +1,7 @@
 on:
   push:
-    branches: main
-
+    branches: 
+      - main
 
 jobs:
   import-data:
@@ -13,20 +13,19 @@ jobs:
       - name: Install packages
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          packages: |
-            any::tidyverse 
-            any::clockify
-            any::lubridate
-            any::gt
+          extra-packages: |
+            tidyverse 
+            clockify
+            lubridate
+            gt
 
       - name: Check out repository
         uses: actions/checkout@v3
 
       - name: Import data
         run: Rscript -e 'source("import-data.R")'
-        with:
-        target: Clocify
-        CLOCIFY_API_Key: ${{ secrets.CLOCIFY_API_Key }}
+        env: # 'env' should be used to set environment variables, and indentation needs correction
+          CLOCIFY_API_Key: ${{ secrets.CLOCIFY_API_KEY }}
 
       - name: Commit results
         run: |
@@ -34,4 +33,4 @@ jobs:
           git config --local user.name "GitHub Actions"
           git add survey_data.rds
           git commit -m 'Data updated' || echo "No changes to commit"
-          git push origin || echo "No changes to commit"
+          git push || echo "No changes to commit"
