@@ -15,8 +15,9 @@ jobs:
         with:
           packages: |
             any::tidyverse 
-            any::clocify
+            any::clockify
             any::lubridate
+            any::gt
 
       - name: Check out repository
         uses: actions/checkout@v3
