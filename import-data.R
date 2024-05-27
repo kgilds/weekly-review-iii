@@ -53,6 +53,8 @@ weekly_review <- weekly_review %>%
 
 weekly_review
 
+readr::write_rds(weekly_review, "weekly-review.rds")
+
 weekly_review_tbl <- weekly_review %>%
   gt::gt()
 
