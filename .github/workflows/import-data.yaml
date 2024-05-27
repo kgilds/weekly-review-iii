@@ -24,6 +24,7 @@ jobs:
 
       - name: Import data
         run: Rscript -e 'source("import-data.R")'
+        Clockify: ${{ secrets.CLOCIFY_API_Key }}
 
       - name: Commit results
         run: |
