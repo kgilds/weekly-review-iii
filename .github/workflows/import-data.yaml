@@ -12,12 +12,7 @@ jobs:
 
       - name: Install packages
         uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          extra-packages: |
-            dplyr
-            clockify
-            lubridate
-            gt
+        uses: r-lib/actions/setup-renv@v2
 
       - name: Check out repository
         uses: actions/checkout@v3
