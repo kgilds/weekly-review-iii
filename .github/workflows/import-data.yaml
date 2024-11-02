@@ -29,4 +29,19 @@ jobs:
       - name: Install R packages with renv
         uses: r-lib/actions/setup-renv@v2
         with:
-         
+          lockfile-path: renv.lock
+        env:
+          RENV_PATHS_CACHE: ~/.cache/renv
+
+      - name: Import data
+        run: Rscript -e 'source("import-data.R")'
+        env: 
+          CLOCIFY_API_Key: ${{ secrets.CLOCIFY_API_KEY }}
+
+      - name: Commit results
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add survey_data.rds
+          git commit -m 'Data updated' || echo "No changes to commit"
+          git push || echo "No changes to commit"
