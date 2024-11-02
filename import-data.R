@@ -54,7 +54,7 @@ weekly_review <- weekly_review %>%
 
 weekly_review
 
-#readr::write_rds(weekly_review, "weekly-review.rds")
+readr::write_rds(weekly_review, "weekly-review.rds")
 
 weekly_review_tbl <- weekly_review %>%
   gt::gt()
@@ -86,6 +86,6 @@ avg_weekly
 avg_weekly_tbl <- avg_weekly %>%
   gt::gt()
 
-#avg_weekly_tbl
+avg_weekly_tbl
 
 
