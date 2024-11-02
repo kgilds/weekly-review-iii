@@ -36,7 +36,7 @@ jobs:
       - name: Import data
         run: Rscript -e 'source("import-data.R")'
         env: 
-          Clockify: ${{ secrets.CLOCIFY}}
+          Clockify: ${{ secrets.CLOCKIFY}}
 
       - name: Commit results
         run: |
