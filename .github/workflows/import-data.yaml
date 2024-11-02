@@ -36,7 +36,7 @@ jobs:
       - name: Import data
         run: Rscript -e 'source("import-data.R")'
         env: 
-          CLOCIFY_API_Key: ${{ secrets.CLOCIFY_API_KEY }}
+          CLOCIFY_API_KEY: ${{ secrets.CLOCIFY_API_KEY }}
 
       - name: Commit results
         run: |
