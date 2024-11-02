@@ -8,7 +8,7 @@ library(gt)
 
 CLOCKIFY_API_KEY = Sys.getenv("Clockify")
 
-clockify::set_api_key(CLOCKIFY_API_KEY)
+#clockify::set_api_key(CLOCKIFY_API_KEY)
 
 
 
