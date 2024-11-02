@@ -86,6 +86,6 @@ avg_weekly
 avg_weekly_tbl <- avg_weekly %>%
   gt::gt()
 
-avg_weekly_tbl
+#avg_weekly_tbl
 
 
