@@ -42,6 +42,6 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git add survey_data.rds
+          git add weekly_review.rds
           git commit -m 'Data updated' || echo "No changes to commit"
           git push || echo "No changes to commit"
