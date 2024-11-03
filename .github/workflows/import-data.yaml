@@ -1,4 +1,4 @@
-name: Data Import Workflow
+name: Data Pipeline - Import Workflow
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  import-data:
+  data-import:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -15,16 +15,15 @@ jobs:
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
         with:
-          r-version: '4.3.1'  # Try an alternative R version that is stable with Rcpp
+          r-version: '4.3.1'  # Use a stable R version
 
       - name: Install system dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev build-essential gfortran
 
-      - name: Manually install a specific version of Rcpp
+      - name: Install specific Rcpp version
         run: Rscript -e 'install.packages("Rcpp", version = "1.0.8.3", repos = "https://cran.rstudio.com")'
-        # Alternatively, you can use renv::install("Rcpp@1.0.8.3")
 
       - name: Install R packages with renv
         uses: r-lib/actions/setup-renv@v2
@@ -33,14 +32,13 @@ jobs:
         env:
           RENV_PATHS_CACHE: ~/.cache/renv
 
-      - name: Import data
+      - name: Run data import script
         run: Rscript -e 'source("import-data.R")'
         env: 
-          Clockify: ${{ secrets.CLOCKIFY}}
-      
-        permissions:
-        contents: write
-        env:
-        GITHUB_PAT: ${{ secrets.PAT }}
+          Clockify: ${{ secrets.CLOCKIFY }}
+          GITHUB_PAT: ${{ secrets.PAT }}
 
-      - uses: stefanzweifel/git-auto-commit-action@v5
+      - name: Auto-commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Auto-update: data import results"
