@@ -1,10 +1,8 @@
 name: Data Pipeline - Import Workflow
 
 on:
-  push:
-    branches: 
-      - main
-
+  schedule:
+    - cron: '0 5 * * 0'  
 jobs:
   data-import:
     runs-on: ubuntu-latest
