@@ -22,7 +22,7 @@ current_date_adj <- current_date -7
 current_date_adj
 
 ###Get last week
-last_week <- lubridate::week(current_date)
+last_week <- lubridate::week(current_date_adj)
 
 
 last_week
